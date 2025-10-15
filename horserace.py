@@ -68,12 +68,22 @@ def put_speed_distance(horses):
 def generate_horses(horses_number):
     return [{'cheval': i + 1, 'vitesse': 0, 'distance': 0, 'status' : True} for i in range(horses_number)]
 
+def get_ranking(horses):
+    return sorted(horses, key=lambda ch: ch['distance'], reverse=True)
+
+def list_horses_happen(ranking):
+    horses_dict = [ch for ch in ranking if ch['distance'] >= 2400]
+    return horses_dict
+
 def race(horses,selected_user_game, horse_number):
     final_horse_ranking = []
     for round in range(50):
         print('=' * 60)
         print(f"Tour {round + 1}")
         put_speed_distance(generate_horses(horse_number))
+
+        ranking = get_ranking(horses)
+        horses_happened = list_horses_happen(ranking)
 
 user_type_of_game = user_input(message, first_condition)
 horses_nbr = user_input(message2, second_condition)
