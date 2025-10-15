@@ -37,6 +37,15 @@ def user_input(message, condition):
 def getKeys(data: dict):
     return list(data.keys())
 
+def position(vitesse, distance_actuelle):
+    return distance_actuelle + distance_par_vitesse[vitesse]
+
+def post_speed(horse,get_speed):
+    horse['vitesse'] += get_speed
+
+def post_distance(horse):
+    horse['distance'] = position(horse['vitesse'], horse['diistance'])
+
 def put_speed_distance(horses):
     disqualified = []
     for i, horse in enumerate(horses):
