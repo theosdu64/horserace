@@ -112,3 +112,11 @@ def race(horses,selected_user_game, horse_number):
 
 user_type_of_game = user_input(message, first_condition)
 horses_nbr = user_input(message2, second_condition)
+
+selected_user_game = type_of_game[user_type_of_game]
+horses_nbr = int(horses_nbr)
+
+horses = generate_horses(horses_nbr)
+
+if __name__ == '__main__':
+   print(race(horses,selected_user_game,horses_nbr))
