@@ -87,6 +87,10 @@ def display_horse_race_stat(ranking, horses):
         if ch in horses:
             print(f"Cheval {ch['cheval']} | Vitesse: {ch['vitesse']} | Distance: {ch['distance']}m")
 
+def display_winner(final_horse_ranking,selected_user_game):
+    for i, ch in enumerate(final_horse_ranking[:selected_user_game]):
+        print(f"{i + 1}. Cheval {ch['cheval']} - {ch['distance']}m")
+
 def race(horses,selected_user_game, horse_number):
     final_horse_ranking = []
     for round in range(50):
@@ -104,6 +108,7 @@ def race(horses,selected_user_game, horse_number):
             print('=' * 60)
             print('COURSE TERMINÉE !')
             break
+    return display_winner(final_horse_ranking, selected_user_game)
 
 user_type_of_game = user_input(message, first_condition)
 horses_nbr = user_input(message2, second_condition)
