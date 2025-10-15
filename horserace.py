@@ -15,6 +15,8 @@ vitesse_evolution = {
     6: {1: -2, 2: -1, 3: 0, 4: 0, 5: 0, 6: "DQ"}
 }
 
+type_of_game = {'tierce': 3, 'quarte': 4, 'quinte': 5}
+
 distance_par_vitesse = {
     0: 0,
     1: 23,
@@ -34,6 +36,18 @@ def user_input(message, condition):
 
 def getKeys(data: dict):
     return list(data.keys())
+
+def put_speed_distance(horses):
+    disqualified = []
+    for i, horse in enumerate(horses):
+        horse_speed = horses['vitesse']
+        get_speed = get_speed(horse_speed)
+
+        if get_speed == 'DQ':
+            print(f'le cheval : {horse['cheval']} est disqualifié')
+            disqualified.append(i)
+            continue
+
 
 user_type_of_game = user_input(message, first_condition)
 horses_nbr = user_input(message2, second_condition)
