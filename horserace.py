@@ -46,6 +46,11 @@ def post_speed(horse,get_speed):
 def post_distance(horse):
     horse['distance'] = position(horse['vitesse'], horse['diistance'])
 
+
+def delete_disqualified(disqualified,array):
+    for i in sorted(disqualified, reverse=True):
+        del array[i]
+
 def put_speed_distance(horses):
     disqualified = []
     for i, horse in enumerate(horses):
@@ -56,7 +61,9 @@ def put_speed_distance(horses):
             print(f'le cheval : {horse['cheval']} est disqualifié')
             disqualified.append(i)
             continue
-
+        post_speed()
+        post_distance()
+    delete_disqualified(disqualified,horses)
 
 user_type_of_game = user_input(message, first_condition)
 horses_nbr = user_input(message2, second_condition)
