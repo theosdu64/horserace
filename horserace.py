@@ -19,3 +19,10 @@ distance_par_vitesse = {
     5: 115,
     6: 138
 }
+
+def user_input(message, condition):
+    first_input = input(message)
+    while condition(first_input):
+        print("Entrée invalide, réessaie.")
+        first_input = input(message)
+    return first_input
