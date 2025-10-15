@@ -75,6 +75,18 @@ def list_horses_happen(ranking):
     horses_dict = [ch for ch in ranking if ch['distance'] >= 2400]
     return horses_dict
 
+def update_horses(horse_happened, final_horse_ranking,horses):
+    for ch in horse_happened:
+        if ch not in final_horse_ranking:
+            final_horse_ranking.append(ch)
+            horses.remove(ch)
+            print(f"Cheval {ch['cheval']} a franchi la ligne , ({ch['distance']}m)")
+
+def display_horse_race_stat(ranking, horses):
+    for ch in ranking:
+        if ch in horses:
+            print(f"Cheval {ch['cheval']} | Vitesse: {ch['vitesse']} | Distance: {ch['distance']}m")
+
 def race(horses,selected_user_game, horse_number):
     final_horse_ranking = []
     for round in range(50):
@@ -84,6 +96,9 @@ def race(horses,selected_user_game, horse_number):
 
         ranking = get_ranking(horses)
         horses_happened = list_horses_happen(ranking)
+
+        update_horses(horses_happened, final_horse_ranking, horses)
+        display_horse_race_stat(ranking, horses)
 
 user_type_of_game = user_input(message, first_condition)
 horses_nbr = user_input(message2, second_condition)
