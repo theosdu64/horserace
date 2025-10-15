@@ -1,4 +1,5 @@
 import random
+import time
 
 vitesse_evolution = {
     0: {1: 0, 2: 1, 3: 1, 4: 1, 5: 2, 6: 2},
@@ -202,8 +203,6 @@ def display_graphic(percent):
     empty = '🟡' * (10 - blocks)
     return horses + empty
 
-
-import time
 
 def display_horse_race_stat(ranking, horses):
     """
