@@ -100,5 +100,10 @@ def race(horses,selected_user_game, horse_number):
         update_horses(horses_happened, final_horse_ranking, horses)
         display_horse_race_stat(ranking, horses)
 
+        if len(final_horse_ranking) >= selected_user_game:
+            print('=' * 60)
+            print('COURSE TERMINÉE !')
+            break
+
 user_type_of_game = user_input(message, first_condition)
 horses_nbr = user_input(message2, second_condition)
