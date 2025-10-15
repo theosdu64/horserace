@@ -65,5 +65,15 @@ def put_speed_distance(horses):
         post_distance()
     delete_disqualified(disqualified,horses)
 
+def generate_horses(horses_number):
+    return [{'cheval': i + 1, 'vitesse': 0, 'distance': 0, 'status' : True} for i in range(horses_number)]
+
+def race(horses,selected_user_game, horse_number):
+    final_horse_ranking = []
+    for round in range(50):
+        print('=' * 60)
+        print(f"Tour {round + 1}")
+        put_speed_distance(generate_horses(horse_number))
+
 user_type_of_game = user_input(message, first_condition)
 horses_nbr = user_input(message2, second_condition)
