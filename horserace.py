@@ -173,6 +173,38 @@ def update_horses(horses_happened, final_ranking, horses):
             print(f"Cheval {ch['cheval']} a franchi la ligne ({ch['distance']}m)")
 
 
+def format_percent(percent):
+    """
+    Arrondit le pourcentage sur une échelle de 0 à 10
+    
+    param percent: valeur en pourcentage (0-100)
+    return: entier arrondi (0-10)
+    """
+    return round(percent / 10)
+
+def graph(res):
+    """
+    Affiche une barre avec des chevaux et des pastilles jaunes
+    
+    param res: nombre de chevaux (0-10)
+    """
+    print('🐎' * res + '🟡' * (10 - res))
+
+def display_graphic(percent):
+    """
+    Retourne une barre emoji représentant le pourcentage
+    
+    param percent: valeur en pourcentage (0-100)
+    return: chaîne avec chevaux et pastilles jaunes
+    """
+    blocks = round(percent / 10)
+    horses = '🐎' * blocks
+    empty = '🟡' * (10 - blocks)
+    return horses + empty
+
+
+import time
+
 def display_horse_race_stat(ranking, horses):
     """
     Affiche les statistiques des chevaux en course
@@ -182,7 +214,15 @@ def display_horse_race_stat(ranking, horses):
     """
     for ch in ranking:
         if ch in horses:
-            print(f"Cheval {ch['cheval']} | Vitesse: {ch['vitesse']} | Distance: {ch['distance']}m")
+            print(
+                f"{'Cheval ' + str(ch['cheval']):<15} | "
+                f"Vitesse: {ch['vitesse']:>3} km/h | "
+                f"Distance: {ch['distance']:>4} m | "
+                f"{display_graphic((ch['distance'] / 2400) * 100)}"
+                )
+    time.sleep(0.7)
+
+            
 
 
 def display_winner(final_ranking, nb_winners):
